@@ -19,14 +19,15 @@
     hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
     ```
     即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中
-<br>
+2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
+
 **运行**<br>
-*假定在dev-demo-1.0-SNAPSHOT.jar*所在目录执行<br>
+*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
 java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
 ```
 其中 test_table 为表名
+
 ***
 #### 运行 HDFSDemo 
 **准备** <br>
@@ -35,14 +36,14 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
     hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
     ```
     即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中
-<br>
+2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar*所在目录执行<br>
 ```java
 java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
 ```
 其中 test_table 为表名
+
 ***
 #### 运行 HiveDemo 
 **准备** <br>
@@ -59,6 +60,7 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
 java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
 ```
 其中 test_table 为表名
+
 ***
 #### 运行 KafkaDemo 
 **准备** <br>
@@ -75,6 +77,7 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
 java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
 ```
 其中 test_table 为表名
+
 ***
 #### 运行 MapReduceDemo 
 **准备** <br>
