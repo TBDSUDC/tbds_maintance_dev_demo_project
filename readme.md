@@ -35,7 +35,7 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
     ```java
     hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
     ```
-    即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
+    即从路径/opt/cluster_conf/hadoop/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
 2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
 
 **运行**<br>

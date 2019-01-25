@@ -42,8 +42,6 @@ public class KafkaDemo {
         properties.put("batch.size", 16384);
         properties.put("linger.ms", 1);
         properties.put("buffer.memory", 33554432);
-//        properties.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-//        properties.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
 
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());

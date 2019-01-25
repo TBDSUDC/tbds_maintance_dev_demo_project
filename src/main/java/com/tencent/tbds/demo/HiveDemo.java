@@ -13,7 +13,7 @@ public class HiveDemo {
             //高可用方式：客户端字段选择可用的hiveserver
             conn = DriverManager.getConnection("jdbc:hive2://tbds-10-3-0-13:2181,tbds-10-3-0-17:2181,tbds-10-3-0-7:2181/default;" +
                             "serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2",
-                    "bhchen", "bhchen_123");
+                    "demoUser", "demoUserPassword");
             Statement st = conn.createStatement();
             String sqlstring = "SHOW DATABASES";
             ResultSet rs = st.executeQuery(sqlstring);
