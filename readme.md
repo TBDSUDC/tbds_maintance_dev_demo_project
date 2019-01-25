@@ -51,22 +51,13 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
 ***
 #### 运行 HiveDemo 
 **准备** <br>
-1. 在源码中做了如下设置：
-    ```java
-   //  conn = DriverManager.getConnection("jdbc:hive2://tbds-10-3-0-13:10000/default", "demoUser", "demoUserPassword");
-   //高可用方式：客户端字段选择可用的hiveserver
-    conn = DriverManager.getConnection("jdbc:hive2://tbds-10-3-0-13:2181,tbds-10-3-0-17:2181,tbds-10-3-0-7:2181/default;" +
-                               "serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2",
-                       "demoUser", "demoUserPassword");
-    ```
-    即连接信息都写在代码中，所以需要更改代码，并重新编译才能运行
+1. 代码中默认采用高可用连接方式，因此在运行程序时需要传入zk地址、用户名、密码
 
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hive/lib:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HiveDemo
+java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hive/lib:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HiveDemo tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 demoUser demoUserPassword
 ```
-
 ***
 #### 运行 KafkaDemo 
 **准备** <br>
