@@ -50,7 +50,6 @@ public class MapReduceDemo {
             System.out.println("usage: hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.MapReduceDemo inputPath outputPath");
             return;
         }
-
         Configuration conf = new Configuration();
         conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/core-site.xml"));
         conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/mapred-site.xml"));
