@@ -33,65 +33,95 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
 **准备** <br>
 1. 在源码中做了如下设置：
     ```java
-    hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
+     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/core-site.xml"));
+     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/hdfs-site.xml"));
+
     ```
-    即从路径/opt/cluster_conf/hadoop/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
+    即从路径/opt/cluster_conf/hadoop/中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
 2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
 
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
+hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HDFSDemo
+或者
+java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2.0.0-2041/hadoop/share/hadoop/common/lib/ -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HDFSDemo
 ```
-其中 test_table 为表名
 
 ***
 #### 运行 HiveDemo 
 **准备** <br>
 1. 在源码中做了如下设置：
     ```java
-    hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
+   //  conn = DriverManager.getConnection("jdbc:hive2://tbds-10-3-0-13:10000/default", "demoUser", "demoUserPassword");
+   //高可用方式：客户端字段选择可用的hiveserver
+    conn = DriverManager.getConnection("jdbc:hive2://tbds-10-3-0-13:2181,tbds-10-3-0-17:2181,tbds-10-3-0-7:2181/default;" +
+                               "serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2",
+                       "demoUser", "demoUserPassword");
     ```
-    即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
+    即连接信息都写在代码中，所以需要更改代码，并重新编译才能运行
 
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
+java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hive/lib:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HiveDemo
 ```
-其中 test_table 为表名
 
 ***
 #### 运行 KafkaDemo 
 **准备** <br>
 1. 在源码中做了如下设置：
     ```java
-    hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
+    // 也可以把认证以及配置信息以key-value的方式写入到一个properties配置文件中，使用时直接载入
+     properties.load(new BufferedInputStream(new FileInputStream("/opt/cluster_conf/kafka/kafka_conf.properties")));
     ```
-    即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
+    即从路径/opt/cluster_conf/kafka/kafka_conf.properties 中读取配置信息，所以请新建该文件，该文件的内容样例如下：
+    ```java
+    vim /opt/cluster_conf/kafka/kafka_conf.properties
+ 
+    bootstrap.servers=tbds-10-3-0-13:6667,tbds-10-3-0-4:6667,tbds-10-3-0-6:6667
+    group.id=TestConsumerGroup
+    security.protocol=SASL_TBDS
+    sasl.mechanism=TBDS
+    sasl.tbds.secure.id=3co1dctXP4Hi3BqKxLK5b6sgZxSBZc8giBLT
+    sasl.tbds.secure.key=zslYbcsrd7Mc1sCLcFErjV7U5DPvdcn9
 
-**运行**<br>
+    ```
+    其中bootstrap.servers为brokers的地址和端口，group.id为消费者组，sasl.tbds.secure.id为认证id，sasl.tbds.secure.key为认证key，其他为固定配置
+2. 本demo为producer和consumer的样例，不会自动创建topic，所以请预先通过后台命令创建topic: test_topic
+    ```java
+    cd /data/bigdata/tbds/usr/hdp/2.2.0.0-2041/kafka/bin
+    ./kafka-topics.sh --create --zookeeper tbds-10-3-0-13:2181,tbds-10-3-0-17:2181,tbds-10-3-0-7:2181 --replication-factor 2 --partitions 2 --topic test_topic
+    ```
+
+**运行producer**<br>
+*请在不同的shell窗口中分别执行producer和consumer* </br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
+ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/kafka/libs:/usr/hdp/2.2.0.0-2041/hadoop  -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.KafkaDemo producer
 ```
-其中 test_table 为表名
+**运行consumer**<br>
+*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+```java
+ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/kafka/libs:/usr/hdp/2.2.0.0-2041/hadoop  -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.KafkaDemo consumer
+```
 
 ***
 #### 运行 MapReduceDemo 
 **准备** <br>
 1. 在源码中做了如下设置：
     ```java
-    hbaseConf.addResource(new FileInputStream("/opt/cluster_conf/hbase/hbase-site.xml"));
+     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/core-site.xml"));
+     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/mapred-site.xml"));
     ```
-    即从路径/opt/cluster_conf/hbase/hbase-site.xml 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
+    即从路径/opt/cluster_conf/hadoop/ 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
+2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到mapred-site.xml中</br>
 
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```java
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HBaseDemo test_table
+hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.MapReduceDemo /tmp/wordcount/input/readme.txt /tmp/wordcount/output
+或
+java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2.0.0-2041/hadoop/share/hadoop/common/lib/ -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.MapReduceDemo /tmp/wordcount/input/readme.txt /tmp/wordcount/output
 ```
-其中 test_table 为表名
+其中 /tmp/wordcount/input/readme.txt 为输入数据，/tmp/wordcount/output为输出目录
