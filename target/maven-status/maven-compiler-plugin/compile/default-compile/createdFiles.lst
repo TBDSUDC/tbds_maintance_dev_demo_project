@@ -1,0 +1,6 @@
+com\tencent\tbds\demo\HDFSDemo.class
+com\tencent\tbds\demo\MapReduceDemo$IntSumReducer.class
+com\tencent\tbds\demo\MapReduceDemo$TokenizerMapper.class
+com\tencent\tbds\demo\HBaseDemo.class
+com\tencent\tbds\demo\MapReduceDemo.class
+com\tencent\tbds\demo\HiveDemo.class
