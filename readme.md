@@ -7,6 +7,8 @@
 3. HiveDemo：连接hiveserver，并列出所有的数据库
 4. KafkaDemo：包含一个producer和consumer程序，一个用来向test_topic发送数据，一个用来从test_topic读取数据
 5. MapReduceDemo：wordCount程序
+6. SparkDemo： spark版本的wordCount，使用spark-submit提交
+7. SparkLauncherDemo： spark版本的wordCount，使用java直接提交
 ***
 ### 编译出的jar包如何运行 
 &#160; &#160; &#160; &#160;使用maven编译出 dev-demo-1.0-SNAPSHOT.jar，使用java命令直接执行，各功能模块执行方式如下。
