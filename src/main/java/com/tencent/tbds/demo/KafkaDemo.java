@@ -46,7 +46,6 @@ public class KafkaDemo {
         properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-
         KafkaProducer<String, String> producer = new KafkaProducer(properties);
         Future<RecordMetadata> future = null;
 

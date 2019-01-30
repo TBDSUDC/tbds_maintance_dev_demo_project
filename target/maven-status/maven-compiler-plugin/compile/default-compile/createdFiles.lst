@@ -1,6 +1,12 @@
 com\tencent\tbds\demo\HDFSDemo.class
 com\tencent\tbds\demo\MapReduceDemo$IntSumReducer.class
 com\tencent\tbds\demo\MapReduceDemo$TokenizerMapper.class
+com\tencent\tbds\demo\SparkLauncherDemo.class
 com\tencent\tbds\demo\HBaseDemo.class
+com\tencent\tbds\demo\SparkDemo$3.class
+com\tencent\tbds\demo\SparkDemo$2.class
+com\tencent\tbds\demo\SparkDemo.class
 com\tencent\tbds\demo\MapReduceDemo.class
+com\tencent\tbds\demo\SparkDemo$1.class
+com\tencent\tbds\demo\SparkLauncherDemo$1.class
 com\tencent\tbds\demo\HiveDemo.class

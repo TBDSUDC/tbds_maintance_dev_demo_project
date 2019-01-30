@@ -8,6 +8,7 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Admin;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ConnectionFactory;
+import org.apache.hadoop.security.UserGroupInformation;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -27,7 +28,6 @@ public class HBaseDemo {
 
         //add authentication information directly
 
-//        hbaseConf.set("hadoopsecurity_authentication_tbds_username", "bhchen");
 //        hbaseConf.set("hbase.security.authentication.tbds.secureid", "2LqMQyyITaGjQqCvmZZLnrCSWvoDSTxd4I2r");
 //        hbaseConf.set("hbase.security.authentication.tbds.securekey", "TwIb7Jlg643iL3twgrhZ9dCWaswok8cv");
 
