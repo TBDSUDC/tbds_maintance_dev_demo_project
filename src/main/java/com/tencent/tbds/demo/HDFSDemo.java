@@ -20,7 +20,7 @@ public class HDFSDemo {
             conf.set("fs.hdfs.impl", "org.apache.hadoop.hdfs.DistributedFileSystem");
 
             //add authentication information directly
-//            conf.set("hadoop_security_authentication_tbds_username", "bhchen");
+    //            conf.set("hadoop_security_authentication_tbds_username", "bhchen");
 //            conf.set("hadoop_security_authentication_tbds_secureid", "g9q06icsbwYWjQ4i2wbjz3MWNpo8DXqAZxzZ");
 //            conf.set("hadoop_security_authentication_tbds_securekey", "qbQyCiWaCJ0HmgiVpc5qofcKd8kVsJgj");
 
