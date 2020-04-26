@@ -6,12 +6,19 @@
 
     <groupId>com.tencent.tbds</groupId>
     <artifactId>dev-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <properties>
-        <tbds.version>4.0.3.3</tbds.version>
+        <spark.version>2.1.0-TBDS-4.1.2.0</spark.version>
+        <hive.version>2.2.0-TBDS-4.1.2.0</hive.version>
+        <hadoop.version>2.7.2-TBDS-4.1.2.0</hadoop.version>
+        <hbase.version>1.2.1-TBDS-4.1.2.0</hbase.version>
+        <kafka.version>0.10.0.1-TBDS-4.1.2.0</kafka.version>
+        <hippo.version>4.1.2.0</hippo.version>
+        <scala.version>2.11.12</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
 
     <repositories>
@@ -27,84 +34,158 @@
             <id>central</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/maven-central/</url>
         </repository>
-
     </repositories>
 
     <dependencies>
+        <!-- dependencies for scala -->
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.5</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-library</artifactId>
+            <version>${scala.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-reflect</artifactId>
+            <version>${scala.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scala-lang</groupId>
+            <artifactId>scala-compiler</artifactId>
+            <version>${scala.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
-    <!-- dependencies for HADOOP APP -->
+        <!-- dependencies for HADOOP APP -->
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-common</artifactId>
-            <version>2.7.2-TBDS-4.0.3.3</version>
+            <version>${hadoop.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
-            <version>2.7.2-TBDS-4.0.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-            <version>2.7.2-TBDS-4.0.3.3</version>
+            <version>${hadoop.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- dependencies for SPARK APP -->
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-core_2.11</artifactId>
-            <version>2.1.0-TBDS-4.1.1</version>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>org.apache.spark</groupId>
             <artifactId>spark-sql_2.11</artifactId>
-            <version>2.1.0-TBDS-4.1.1</version>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
         </dependency>
-
-
 
         <!-- dependencies for HIVE APP -->
         <dependency>
             <groupId>org.apache.hive</groupId>
             <artifactId>hive-jdbc</artifactId>
-            <version>2.2.0-SNAPSHOT-TBDS-4.0.3.3</version>
+            <version>${hive.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- dependencies for HBase APP -->
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-client</artifactId>
-            <version>1.2.1-TBDS-4.0.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-server</artifactId>
-            <version>1.2.1-TBDS-4.0.3.3</version>
+            <version>${hbase.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-common</artifactId>
-            <version>1.2.1-TBDS-4.0.3.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.hbase</groupId>
-            <artifactId>hbase-protocol</artifactId>
-            <version>1.2.1-TBDS-4.0.3.3</version>
+            <version>${hbase.version}</version>
+            <scope>provided</scope>
         </dependency>
 
-        <!-- dependencies for kafka APP -->
+        <!-- dependencies for kafka client -->
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
-            <version>0.10.0.1-TBDS-4.0.3.3</version>
+            <version>${kafka.version}</version>
+            <scope>provided</scope>
         </dependency>
+
+        <!-- dependencies for hippo client -->
         <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka_2.11</artifactId>
-        <version>0.10.0.1-TBDS-4.1.1</version>
-    </dependency>
+            <groupId>com.tencent.hippo</groupId>
+            <artifactId>hippo-client</artifactId>
+            <version>${hippo.version}</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>scala-maven-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scalaVersion>${scala.version}</scalaVersion>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>make-package</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/assembly/package.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
 
 </project>
