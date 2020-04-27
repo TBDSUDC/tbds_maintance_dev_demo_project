@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 /**
  * usage:
- * java -cp /usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar:dev-demo-1.0.0.jar com.tencent.tbds.demo.hive.HiveDemo --user <user name> --password <password> --zk-list <host1:port1,host2:port2>
+ * java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --user <user name> --password <password> --zk-list <host1:port1,host2:port2>
  */
 public class HiveDemo {
     public static void main(String[] args) throws Exception {

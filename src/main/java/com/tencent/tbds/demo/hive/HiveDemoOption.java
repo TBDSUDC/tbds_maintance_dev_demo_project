@@ -19,7 +19,7 @@ public class HiveDemoOption {
     private final OptionSpec<String> password;
 
     public HiveDemoOption(String[] args) {
-        this.optionParser = new OptionParser();
+        this.optionParser = new OptionParser(false);
 
         user = optionParser.accepts("user")
                 .withRequiredArg()

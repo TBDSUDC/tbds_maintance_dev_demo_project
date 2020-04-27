@@ -5,11 +5,11 @@
     <formats>
         <format>zip</format>
     </formats>
-    <includeBaseDirectory>false</includeBaseDirectory>
     <fileSets>
         <fileSet>
+            <fileMode>777</fileMode>
             <directory>bin</directory>
-            <outputDirectory/>
+            <outputDirectory>bin</outputDirectory>
         </fileSet>
     </fileSets>
     <files>

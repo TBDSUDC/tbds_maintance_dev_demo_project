@@ -1,7 +1,7 @@
 ***
 ## 工程项目说明
 ***
-&#160; &#160; &#160; &#160;本Intelij Idea工程是针对 TBDS运维培训的第五课而开发，内容是简单的开源组件的二次开发，包含7个类：
+&#160; &#160; &#160; &#160;本Intelij Idea工程是针对 TBDS运维培训的第五课而开发，内容是简单的开源组件的二次开发，包含的demo程序如下：
 1. HBaseDemo：简单的HBase二次开发程序，传入表名，如果不存在，则创建；然后列出所有的表
 2. HDFSDemo：列出根目录/下的所有文件与文件夹
 3. HiveDemo：连接hiveserver，并列出所有的数据库
@@ -9,6 +9,8 @@
 5. MapReduceDemo：wordCount程序
 6. SparkDemo： spark版本的wordCount，使用spark-submit提交
 7. SparkLauncherDemo： spark版本的wordCount，使用java直接提交
+8. ReadHiveTableDemo：使用spark读取hive表的数据
+9. WriteHiveTableDemo：使用spark输出数据到hive表
 ***
 ### 编译出的jar包如何运行 
 &#160; &#160; &#160; &#160;使用maven编译出 dev-demo-1.0-SNAPSHOT.jar，使用java命令直接执行，各功能模块执行方式如下。
@@ -56,9 +58,9 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
 1. 代码中默认采用高可用连接方式，因此在运行程序时需要传入zk地址、用户名、密码
 
 **运行**<br>
-*假定在dev-demo-1.0.0.jar所在目录执行*<br>
+*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-java -cp /usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar:dev-demo-1.0.0.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 --user demoUser --password demoUserPassword
+java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 --user demoUser --password demoUserPassword
 ```
 ***
 #### 运行 KafkaDemo 
@@ -158,3 +160,43 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
     ```
     java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
+***
+#### 运行 ReadHiveTableDemo
+**这是一个使用spark读取hive表的示例程序**
+
+运行步骤:
+1. 使用maven命令打包项目：mvn clean compile package
+2. 将target下的zip包上传到服务器
+3. 解压zip包，进入解压目录
+4. 执行
+```
+./bin/read_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name>
+```
+参数解释:  
+auth-user: 认证用户  
+auth-id: 认证ID  
+auth-key: 认证key  
+hive-metastore-uris: hive metastore的地址  
+hive-db: hive数据库  
+hive-table: hive表  
+
+***
+#### 运行 WriteHiveTableDemo
+**这是一个使用spark往hive表写数据的示例程序**
+
+运行步骤:
+1. 使用maven命令打包项目：mvn clean compile package
+2. 将target下的zip包上传到服务器
+3. 解压zip包，进入解压目录
+4. 执行
+```
+./bin/write_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name> --hdfs-path <hdfs path>
+```
+参数解释:  
+auth-user: 认证用户  
+auth-id: 认证ID  
+auth-key: 认证key  
+hive-metastore-uris: hive metastore的地址  
+hive-db: hive数据库  
+hive-table: hive表  
+hdfs-path: 读取数据的路径  
