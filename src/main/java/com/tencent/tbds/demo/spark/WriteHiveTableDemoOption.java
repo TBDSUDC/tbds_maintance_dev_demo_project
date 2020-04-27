@@ -16,7 +16,7 @@ public class WriteHiveTableDemoOption {
     private final OptionSpec<String> hdfsPath;
 
     public WriteHiveTableDemoOption(String[] args) {
-        this.optionParser = new OptionParser(false);
+        this.optionParser = new OptionParser();
 
         // hive metastore address, which is required
         hiveMetastoreUris = optionParser.accepts("hive-metastore-uris")

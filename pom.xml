@@ -151,7 +151,8 @@
         <dependency>
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
-            <version>5.0.4</version>
+            <version>4.9</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 

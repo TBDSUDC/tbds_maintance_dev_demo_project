@@ -1,4 +1,4 @@
-package com.tencent.tbds.demo;
+package com.tencent.tbds.demo.hippo;
 
 import com.tencent.hippo.Message;
 import com.tencent.hippo.client.producer.ProducerConfig;

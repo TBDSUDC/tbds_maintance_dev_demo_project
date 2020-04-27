@@ -15,7 +15,7 @@ public class ReadHiveTableDemoOption {
     private final OptionSpec<String> hiveTable;
 
     public ReadHiveTableDemoOption(String[] args) {
-        this.optionParser = new OptionParser(false);
+        this.optionParser = new OptionParser();
 
         // hive metastore address, which is required
         hiveMetastoreUris = optionParser.accepts("hive-metastore-uris")

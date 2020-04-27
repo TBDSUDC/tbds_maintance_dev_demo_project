@@ -34,23 +34,14 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hbase/lib/:/usr/hdp/2.2.0.0-2041/hado
 
 ***
 #### 运行 HDFSDemo 
-**准备** <br>
-1. 在源码中做了如下设置：
-    ```
-     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/core-site.xml"));
-     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/hdfs-site.xml"));
-
-    ```
-    即从路径/opt/cluster_conf/hadoop/中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到hbase-site.xml中</br>
-
-**运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HDFSDemo
-或者
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2.0.0-2041/hadoop/share/hadoop/common/lib/ -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HDFSDemo
+hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.hdfs.HDFSDemo --auth-user <username> --auth-id <id> --auth-key <key>
 ```
+参数解释:  
+auth-user: 认证用户  
+auth-id: 认证ID  
+auth-key: 认证key  
 
 ***
 #### 运行 HiveDemo 
@@ -60,8 +51,14 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 --user demoUser --password demoUserPassword
+java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list <<host1:port1,host2:port2>> --user <user name> --password <password>
 ```
+
+参数解释:  
+zk-list: zookeeper地址列表  
+user: 连接hive的用户名  
+password: 连接hive的密码  
+
 ***
 #### 运行 KafkaDemo 
 **准备** <br>
