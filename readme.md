@@ -56,9 +56,9 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
 1. 代码中默认采用高可用连接方式，因此在运行程序时需要传入zk地址、用户名、密码
 
 **运行**<br>
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-1.0.0.jar所在目录执行*<br>
 ```
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hive/lib:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.HiveDemo tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 demoUser demoUserPassword
+java -cp /usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar:dev-demo-1.0.0.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list tbds-10-3-0-13:2181,tbds-10-3-0-17:2181 --user demoUser --password demoUserPassword
 ```
 ***
 #### 运行 KafkaDemo 
