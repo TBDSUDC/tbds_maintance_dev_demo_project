@@ -13,7 +13,8 @@
         <hive.version>2.2.0-TBDS-4.1.2.0</hive.version>
         <hadoop.version>2.7.2-TBDS-4.1.2.0</hadoop.version>
         <hbase.version>1.2.1-TBDS-4.1.2.0</hbase.version>
-        <kafka.version>0.10.0.1-TBDS-4.1.2.0</kafka.version>
+        <kafka.version>1.0.0-TBDS-5.0</kafka.version>
+        <flink.version>1.5.0-oceanus</flink.version>
         <hippo.version>4.1.2.0</hippo.version>
         <scala.version>2.11.12</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -129,6 +130,20 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- dependencies for flink -->
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-streaming-scala_2.11</artifactId>
+            <version>${flink.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-kafka-0.10_2.11</artifactId>
+            <version>${flink.version}</version>
             <scope>provided</scope>
         </dependency>
 

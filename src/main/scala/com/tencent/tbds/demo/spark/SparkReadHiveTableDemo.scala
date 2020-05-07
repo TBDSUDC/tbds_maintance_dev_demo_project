@@ -2,7 +2,7 @@ package com.tencent.tbds.demo.spark
 
 import org.apache.spark.sql.SparkSession
 
-object ReadHiveTableDemo {
+object SparkReadHiveTableDemo {
   def main(args: Array[String]): Unit = {
     val option = new ReadHiveTableDemoOption(args)
     if (option.hasHelp) {

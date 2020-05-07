@@ -1,4 +1,4 @@
-package com.tencent.tbds.demo.hbase;
+package com.tencent.tbds.demo.mapreduce;
 
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -6,16 +6,23 @@ import joptsimple.OptionSpec;
 
 import java.io.IOException;
 
-public class HBaseDemoOption {
+public class MapReduceDemoOption {
+
     private final OptionParser optionParser;
     private final OptionSet optionSet;
+    private final OptionSpec<String> authUser;
     private final OptionSpec<String> authId;
     private final OptionSpec<String> authKey;
-    private final OptionSpec<String> zkHost;
-    private final OptionSpec<String> tableName;
+    private final OptionSpec<String> input;
+    private final OptionSpec<String> output;
 
-    public HBaseDemoOption(String[] args) {
+    public MapReduceDemoOption(String[] args) {
         this.optionParser = new OptionParser();
+
+        authUser = optionParser.accepts("auth-user")
+                .withRequiredArg()
+                .required()
+                .describedAs("authentication user name");
 
         authId = optionParser.accepts("auth-id")
                 .withRequiredArg()
@@ -27,15 +34,15 @@ public class HBaseDemoOption {
                 .required()
                 .describedAs("authentication secure key");
 
-        zkHost = optionParser.accepts("zk-host")
+        input = optionParser.accepts("input")
                 .withRequiredArg()
                 .required()
-                .describedAs("comma separated list of zookeeper servers, in the form host1,host2...");
+                .describedAs("input path to read data");
 
-        tableName = optionParser.accepts("table-name")
+        output = optionParser.accepts("output")
                 .withRequiredArg()
                 .required()
-                .describedAs("hbase table which read data from");
+                .describedAs("output path to write data");
 
         optionParser.accepts("help").forHelp();
         this.optionSet = optionParser.parse(args);
@@ -57,6 +64,10 @@ public class HBaseDemoOption {
         return optionSet;
     }
 
+    public String getAuthUser() {
+        return optionSet.valueOf(authUser);
+    }
+
     public String getAuthId() {
         return optionSet.valueOf(authId);
     }
@@ -65,11 +76,11 @@ public class HBaseDemoOption {
         return optionSet.valueOf(authKey);
     }
 
-    public String getZkHost() {
-        return optionSet.valueOf(zkHost);
+    public String getInput() {
+        return optionSet.valueOf(input);
     }
 
-    public String getTableName() {
-        return optionSet.valueOf(tableName);
+    public String getOutput() {
+        return optionSet.valueOf(output);
     }
 }

@@ -20,12 +20,12 @@
 #### 运行 HBaseDemo 
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-list <zookeeper host list> --table-name <table name>
+java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <zookeeper host list> --table-name <table name>
 ```
 参数解释:  
 auth-id: 认证ID  
 auth-key: 认证key  
-zk-list: zookeeper主机列表，如tbds-172-16-0-30,tbds-172-16-0-29    
+zk-host: zookeeper主机列表，如tbds-172-16-0-30,tbds-172-16-0-29    
 table-name: hbase表名  
 
 ***
@@ -83,23 +83,16 @@ offset-reset: 可选参数，默认值是latest
 
 ***
 #### 运行 MapReduceDemo 
-**准备** <br>
-1. 在源码中做了如下设置：
-    ```
-     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/core-site.xml"));
-     conf.addResource(new FileInputStream("/opt/cluster_conf/hadoop/mapred-site.xml"));
-    ```
-    即从路径/opt/cluster_conf/hadoop/ 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
-2. 在运行是要么采用export的方式完成认证，要么将认证信息配置到mapred-site.xml中</br>
-
-**运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.MapReduceDemo /tmp/wordcount/input/readme.txt /tmp/wordcount/output
-或
-java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2.0.0-2041/hadoop/share/hadoop/common/lib/ -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.MapReduceDemo /tmp/wordcount/input/readme.txt /tmp/wordcount/output
+hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.mapreduce.MapReduceDemo --auth-user <username> --auth-id <id> --auth-key <key> --input <input path> --output <output path>
 ```
-其中 /tmp/wordcount/input/readme.txt 为输入数据，/tmp/wordcount/output为输出目录
+参数解释:  
+auth-user: 认证用户  
+auth-id: 认证ID  
+auth-key: 认证key  
+input: 数据输入目录   
+output: 数据输出目录   
 
 ***
 #### 运行 SparkDemo 
@@ -141,7 +134,7 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
     java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
 ***
-#### 运行 ReadHiveTableDemo
+#### 运行 SparkReadHiveTableDemo
 **这是一个使用spark读取hive表的示例程序**
 
 运行步骤:
@@ -150,7 +143,7 @@ java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/hadoop:/data/bigdata/tbds/usr/hdp/2.2
 3. 解压zip包，进入解压目录
 4. 执行
 ```
-./bin/read_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name>
+./bin/spark_read_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name>
 ```
 参数解释:  
 auth-user: 认证用户  
@@ -161,7 +154,7 @@ hive-db: hive数据库
 hive-table: hive表  
 
 ***
-#### 运行 WriteHiveTableDemo
+#### 运行 SparkWriteHiveTableDemo
 **这是一个使用spark往hive表写数据的示例程序**
 
 运行步骤:
@@ -170,7 +163,7 @@ hive-table: hive表
 3. 解压zip包，进入解压目录
 4. 执行
 ```
-./bin/write_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name> --hdfs-path <hdfs path>
+./bin/spark_write_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <hive table name> --hdfs-path <hdfs path>
 ```
 参数解释:  
 auth-user: 认证用户  

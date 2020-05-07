@@ -2,7 +2,7 @@
 
 ## usage:
 ##
-## sh read_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> \
+## sh spark_read_hive_table_demo.sh --auth-user <user name> --auth-id <secure id> --auth-key <secure key> \
 ##    --hive-metastore-uris <hive metastore address> --hive-db <hive database> --hive-table <--hive-table>
 
 bin=$(dirname "$0")

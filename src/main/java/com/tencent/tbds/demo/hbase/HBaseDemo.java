@@ -14,7 +14,7 @@ import java.io.IOException;
  * 认证方式二：代码里面设置认证
  *
  * usage:
- * java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-list <zookeeper host list> --table-name <table name>
+ * java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <zookeeper host list> --table-name <table name>
  */
 public class HBaseDemo {
     public static void main(String[] args) throws IOException {
@@ -25,7 +25,7 @@ public class HBaseDemo {
         }
 
         Configuration conf = HBaseConfiguration.create();
-        conf.set("hbase.zookeeper.quorum", option.getZkList());
+        conf.set("hbase.zookeeper.quorum", option.getZkHost());
         conf.set("zookeeper.znode.parent", "/hbase-unsecure");
 
         // 认证参数

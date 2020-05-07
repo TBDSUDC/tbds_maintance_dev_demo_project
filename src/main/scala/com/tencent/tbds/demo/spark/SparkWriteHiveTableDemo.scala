@@ -3,7 +3,7 @@ package com.tencent.tbds.demo.spark
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.{SaveMode, SparkSession}
 
-object WriteHiveTableDemo {
+object SparkWriteHiveTableDemo {
   def main(args: Array[String]): Unit = {
     val option = new WriteHiveTableDemoOption(args)
     if (option.hasHelp) {
