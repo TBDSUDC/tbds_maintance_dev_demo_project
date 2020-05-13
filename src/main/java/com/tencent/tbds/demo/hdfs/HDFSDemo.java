@@ -8,6 +8,9 @@ import org.apache.hadoop.security.UserGroupInformation;
 
 /**
  * 认证方式一：使用环境变量
+ *     export hadoop_security_authentication_tbds_secureid=<id>
+ *     export hadoop_security_authentication_tbds_securekey=<key>
+ *     export hadoop_security_authentication_tbds_username=<user>
  *
  * 认证方式二：通过代码设置认证参数
  *

@@ -5,7 +5,7 @@ import org.apache.spark.sql.{SaveMode, SparkSession}
 
 object SparkWriteHiveTableDemo {
   def main(args: Array[String]): Unit = {
-    val option = new WriteHiveTableDemoOption(args)
+    val option = new SparkWriteHiveTableDemoOption(args)
     if (option.hasHelp) {
       option.printHelp()
       return

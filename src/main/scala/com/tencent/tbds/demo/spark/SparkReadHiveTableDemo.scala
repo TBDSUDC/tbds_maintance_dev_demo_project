@@ -4,7 +4,7 @@ import org.apache.spark.sql.SparkSession
 
 object SparkReadHiveTableDemo {
   def main(args: Array[String]): Unit = {
-    val option = new ReadHiveTableDemoOption(args)
+    val option = new SparkReadHiveTableDemoOption(args)
     if (option.hasHelp) {
       option.printHelp()
       return

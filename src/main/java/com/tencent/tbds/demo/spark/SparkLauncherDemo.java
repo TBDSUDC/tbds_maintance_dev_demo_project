@@ -1,4 +1,4 @@
-package com.tencent.tbds.demo;
+package com.tencent.tbds.demo.spark;
 
 import org.apache.spark.launcher.SparkAppHandle;
 import org.apache.spark.launcher.SparkLauncher;
@@ -8,7 +8,7 @@ import java.io.IOException;
 public class SparkLauncherDemo {
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
-            System.out.println("usage: java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.SparkLauncherDemo inputFile outputDir");
+            System.out.println("usage: java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.spark.SparkLauncherDemo inputFile outputDir");
             return;
         }
 
@@ -21,7 +21,7 @@ public class SparkLauncherDemo {
                 .setConf("spark.executor.cores", "2")
                 .setConf("spark.executor.instances", "2")
                 .setAppResource("dev-demo-1.0-SNAPSHOT.jar")
-                .setMainClass("com.tencent.tbds.demo.SparkDemo")
+                .setMainClass("com.tencent.tbds.demo.spark.SparkDemo")
                 .addAppArgs(args[0], args[1])
                 .setDeployMode("cluster")
                 .startApplication(new SparkAppHandle.Listener() {

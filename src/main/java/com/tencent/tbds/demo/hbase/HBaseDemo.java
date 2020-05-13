@@ -10,6 +10,8 @@ import java.io.IOException;
 
 /**
  * 认证方式一：环境变量设置认证
+ *     export hbase_security_authentication_tbds_secureid=<id>
+ *     export hbase_security_authentication_tbds_securekey=<key>
  *
  * 认证方式二：代码里面设置认证
  *

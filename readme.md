@@ -110,7 +110,7 @@ output: 数据输出目录
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 1. 运行方式1：采用spark-submit方式
     ```
-     /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.SparkDemo dev-demo-1.0-SNAPSHOT.jar /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
+     /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.spark.SparkDemo dev-demo-1.0-SNAPSHOT.jar /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
     其中 /tmp/wordcount/input/readme.txt 为输入数据，/tmp/wordcount/output为输出目录
 2. 运行方式2：采用java的方式，该方式需要使用spark Launcher进程来把主任务调度起来：
@@ -125,13 +125,13 @@ output: 数据输出目录
                     .setConf("spark.executor.cores", "2")
                     .setConf("spark.executor.instances", "2")
                     .setAppResource("dev-demo-1.0-SNAPSHOT.jar")
-                    .setMainClass("com.tencent.tbds.demo.SparkDemo")
+                    .setMainClass("com.tencent.tbds.demo.spark.SparkDemo")
                     .addAppArgs(args[0], args[1])
                     .setDeployMode("cluster")
     ```
    **执行**
     ```
-    java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
+    java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.spark.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
 ***
 #### 运行 SparkReadHiveTableDemo

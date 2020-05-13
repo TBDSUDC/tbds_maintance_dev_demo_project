@@ -6,15 +6,16 @@ import joptsimple.OptionSpec;
 
 import java.io.IOException;
 
-public class ReadHiveTableDemoOption {
+public class SparkWriteHiveTableDemoOption {
     private final OptionParser optionParser;
     private final OptionSet optionSet;
     private final OptionSpec<String> hiveMetastoreUris;
     private final OptionSpec<String> defaultFS;
     private final OptionSpec<String> hiveDb;
     private final OptionSpec<String> hiveTable;
+    private final OptionSpec<String> hdfsPath;
 
-    public ReadHiveTableDemoOption(String[] args) {
+    public SparkWriteHiveTableDemoOption(String[] args) {
         this.optionParser = new OptionParser();
 
         // hive metastore address, which is required
@@ -29,17 +30,23 @@ public class ReadHiveTableDemoOption {
                 .defaultsTo("hdfs://hdfsCluster")
                 .describedAs("file system url, default is hdfs://hdfsCluster");
 
-        // hive database to read data, which is required
+        // hive database to write data, which is required
         hiveDb = optionParser.accepts("hive-db")
                 .withRequiredArg()
                 .required()
                 .describedAs("hive database");
 
-        // hive table to read data, which is required
+        // hive table to write data, which is required
         hiveTable = optionParser.accepts("hive-table")
                 .withRequiredArg()
                 .required()
                 .describedAs("hive table");
+
+        // hdfs path to read data, which is required
+        hdfsPath = optionParser.accepts("hdfs-path")
+                .withRequiredArg()
+                .required()
+                .describedAs("the path in hdfs to read data");
 
         optionParser.accepts("help").forHelp();
         this.optionSet = optionParser.parse(args);
@@ -76,4 +83,9 @@ public class ReadHiveTableDemoOption {
     public String getHiveTable() {
         return optionSet.valueOf(hiveTable);
     }
+
+    public String getHdfsPath() {
+        return optionSet.valueOf(hdfsPath);
+    }
+
 }

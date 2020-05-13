@@ -15,6 +15,7 @@
         <hbase.version>1.2.1-TBDS-4.1.2.0</hbase.version>
         <kafka.version>1.0.0-TBDS-5.0</kafka.version>
         <flink.version>1.5.0-oceanus</flink.version>
+        <tbds.flink.version>1.7-tdflink-0.1.1</tbds.flink.version>
         <hippo.version>4.1.2.0</hippo.version>
         <scala.version>2.11.12</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -29,6 +30,9 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
         <repository>
             <id>tencent-public</id>
@@ -36,6 +40,9 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
         </repository>
     </repositories>
 
@@ -137,13 +144,13 @@
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-streaming-scala_2.11</artifactId>
-            <version>${flink.version}</version>
+            <version>${tbds.flink.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.flink</groupId>
             <artifactId>flink-connector-kafka-0.10_2.11</artifactId>
-            <version>${flink.version}</version>
+            <version>${tbds.flink.version}</version>
             <scope>provided</scope>
         </dependency>
 

@@ -1,4 +1,4 @@
-package com.tencent.tbds.demo;
+package com.tencent.tbds.demo.spark;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -20,7 +20,7 @@ public class SparkDemo {
 
     public static void main(String[] args) throws IOException {
         if (args.length < 2) {
-            System.err.println("Usage:  /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.SparkDemo dev-demo-1.0-SNAPSHOT.jar inputFile outputPath");
+            System.err.println("Usage:  /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.spark.SparkDemo dev-demo-1.0-SNAPSHOT.jar inputFile outputPath");
             System.exit(1);
         }
         SparkSession spark = SparkSession
