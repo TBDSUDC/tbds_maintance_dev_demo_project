@@ -30,9 +30,6 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
         </repository>
         <repository>
             <id>tencent-public</id>
@@ -40,9 +37,6 @@
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
         </repository>
     </repositories>
 
