@@ -27,16 +27,10 @@
         <repository>
             <id>tencent-tsdb</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/tbds/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
         <repository>
             <id>tencent-public</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/maven-public/</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
         </repository>
     </repositories>
 
@@ -81,11 +75,23 @@
             <artifactId>hadoop-common</artifactId>
             <version>${hadoop.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.tencent.tbds.sdk</groupId>
+                    <artifactId>tbds-sdk-common</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-hdfs</artifactId>
             <version>${hadoop.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.tencent.tbds.sdk</groupId>
+            <artifactId>tbds-sdk-common</artifactId>
+            <version>4.0.3.3</version>
             <scope>provided</scope>
         </dependency>
 
