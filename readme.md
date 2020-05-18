@@ -12,6 +12,7 @@
 8. SparkLauncherDemo： spark版本的wordCount，使用java直接提交
 9. ReadHiveTableDemo：使用spark读取hive表的数据
 10. WriteHiveTableDemo：使用spark输出数据到hive表
+11. FlinkKafkaDemo：flink消费kafka数据
 ***
 ### 编译出的jar包如何运行 
 &#160; &#160; &#160; &#160;使用maven编译出 dev-demo-1.0-SNAPSHOT.jar，使用java命令直接执行，各功能模块执行方式如下。
@@ -173,3 +174,15 @@ hive-metastore-uris: hive metastore的地址
 hive-db: hive数据库  
 hive-table: hive表  
 hdfs-path: 读取数据的路径  
+
+***
+#### 运行 FlinkKafkaDemo
+**这是一个使用flink实时消费kafka数据的示例程序，需要上传到oceanus运行**
+
+参数解释:  
+kafka-brokers: kafka broker地址列表  
+group-id: 消费者组ID  
+topic: kafka topic名称  
+auth-id: 认证ID  
+auth-key: 认证key  
+
