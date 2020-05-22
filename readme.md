@@ -186,3 +186,29 @@ topic: kafka topic名称
 auth-id: 认证ID  
 auth-key: 认证key  
 
+***
+#### 运行 FlinkHDFSSinkDemo
+**这是一个使用flink实时消费kafka数据，并输出到HDFS的示例程序，需要上传到oceanus运行**
+
+参数解释:  
+kafka-brokers: kafka broker地址列表  
+group-id: 消费者组ID  
+topic: kafka topic名称  
+auth-id: 认证ID  
+auth-key: 认证key  
+hdfs-path: 数据输出到HDFS的路径  
+
+***
+#### 运行 SparkStreamKafkaDemo
+**这是一个使用Spark Streaming实时消费kafka数据的示例程序**
+```
+ spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo --master local[2] --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar dev-demo-1.0-SNAPSHOT.jar --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key> --topic <topic name>
+```
+参数解释:  
+kafka-brokers: kafka broker地址列表  
+group-id: 消费者组ID  
+auth-id: 认证ID  
+auth-key: 认证key  
+topic: kafka topic名称  
+
+

@@ -104,6 +104,19 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming_2.11</artifactId>
+            <version>${spark.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-streaming-kafka-0-10_2.11</artifactId>
+            <version>${spark.version}</version>
+        </dependency>
+
         <!-- dependencies for HIVE APP -->
         <dependency>
             <groupId>org.apache.hive</groupId>
@@ -123,6 +136,7 @@
             <groupId>org.apache.hbase</groupId>
             <artifactId>hbase-common</artifactId>
             <version>${hbase.version}</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- dependencies for kafka client -->
@@ -145,6 +159,12 @@
             <version>${tbds.flink.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.apache.flink</groupId>
+            <artifactId>flink-connector-filesystem_2.11</artifactId>
+            <version>${tbds.flink.version}</version>
+        </dependency>
+
 
         <!-- dependencies for hippo client -->
         <dependency>
@@ -195,6 +215,8 @@
                             <artifactSet>
                                 <includes>
                                     <include>org.apache.kafka:kafka-clients</include>
+                                    <include>org.apache.flink:flink-connector-filesystem_2.11</include>
+                                    <include>org.apache.spark:spark-streaming-kafka-0-10_2.11</include>
                                 </includes>
                             </artifactSet>
                         </configuration>
