@@ -202,7 +202,7 @@ hdfs-path: 数据输出到HDFS的路径
 #### 运行 SparkStreamKafkaDemo
 **这是一个使用Spark Streaming实时消费kafka数据的示例程序**
 ```
- spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo --master local[2] --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar dev-demo-1.0-SNAPSHOT.jar --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key> --topic <topic name>
+ spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo --master yarn --deploy-mode client --conf spark.executor.userClassPathFirst=true --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar dev-demo-1.0-SNAPSHOT.jar --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key> --topic <topic name>
 ```
 参数解释:  
 kafka-brokers: kafka broker地址列表  
@@ -210,5 +210,17 @@ group-id: 消费者组ID
 auth-id: 认证ID  
 auth-key: 认证key  
 topic: kafka topic名称  
+
+***
+#### Spark输出到HBase
+**Spark输出到HBase总体来说有3种方式，分别对应不同的应用场景**
+1. 通过常规HBase API，这种方式吞吐量低，适用于数据量较小的场景，如流计算。
+2. 调用saveAsNewAPIHadoopDataset，底层实现方式是批量+异步，吞吐量高，但容易对region server造成太大压力，适用于中等规模数据的场景
+3. 生成HFile文件，再将此文件导入HBase，适用于大规模数据场景
+
+这3种方式的例子请分别参考：SparkWriteHBaseDirectDemo、SparkWriteHBaseBatchDemo、SparkWriteHBaseBulkLoadDemo，其运行的命令如下：
+```
+ spark-submit --class com.tencent.tbds.demo.spark.SparkWriteHBaseDirectDemo --jars $(echo /usr/hdp/2.2.0.0-2041/hbase/lib/*.jar | tr ' ' ',') dev-demo-1.0-SNAPSHOT.jar --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...>
+```
 
 
