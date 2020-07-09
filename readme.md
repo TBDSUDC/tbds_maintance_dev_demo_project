@@ -21,12 +21,12 @@
 #### 运行 HBaseDemo 
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <zookeeper host list> --table-name <table name>
+java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <host1,host2> --table-name <table name>
 ```
 参数解释:  
 auth-id: 认证ID  
 auth-key: 认证key  
-zk-host: zookeeper主机列表，如tbds-172-16-0-30,tbds-172-16-0-29    
+zk-host: zookeeper主机列表  
 table-name: hbase表名  
 
 ***
@@ -48,11 +48,11 @@ auth-key: 认证key
 **运行**<br>
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list <<host1:port1,host2:port2>> --user <user name> --password <password>
+java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list <host1:port1,host2:port2> --user <user name> --password <password>
 ```
 
 参数解释:  
-zk-list: zookeeper地址列表，如tbds-172-16-0-30:2181,tbds-172-16-0-29:2181   
+zk-list: zookeeper地址列表   
 user: 连接hive的用户名  
 password: 连接hive的密码  
 
@@ -61,24 +61,24 @@ password: 连接hive的密码
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 
 ```
- java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
+ java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
 ```
 参数解释:   
 auth-id: 认证ID  
 auth-key: 认证key  
-kafka-brokers: kafka brokers列表，如tbds-172-16-0-30:6667  
+kafka-brokers: kafka brokers列表  
 topic: 指定数据发送到哪个topic
 
 ***
 #### 运行 KafkaConsumerDemo
 *假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
 ```
- java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
+ java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
 ```
 参数解释:   
 auth-id: 认证ID  
 auth-key: 认证key  
-kafka-brokers: kafka brokers列表，如tbds-172-16-0-30:6667  
+kafka-brokers: kafka brokers列表  
 topic: 指定消费哪个topic的数据  
 offset-reset: 可选参数，默认值是latest  
 
