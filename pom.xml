@@ -14,7 +14,6 @@
         <hadoop.version>2.7.2-TBDS-4.0.3.3</hadoop.version>
         <hbase.version>1.2.1-TBDS-4.0.3.3</hbase.version>
         <kafka.version>1.0.0-TBDS-5.0</kafka.version>
-        <flink.version>1.5.0-oceanus</flink.version>
         <tbds.flink.version>1.7-tdflink-0.1.1</tbds.flink.version>
         <hippo.version>4.1.2.0</hippo.version>
         <scala.version>2.11.12</scala.version>
@@ -25,7 +24,7 @@
 
     <repositories>
         <repository>
-            <id>tencent-tsdb</id>
+            <id>tencent-tbds</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/tbds/</url>
         </repository>
         <repository>

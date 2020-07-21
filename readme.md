@@ -1,7 +1,7 @@
 ***
 ## 工程项目说明
 ***
-&#160; &#160; &#160; &#160;本Intelij Idea工程是针对 TBDS运维培训的第五课而开发，内容是简单的开源组件的二次开发，包含的demo程序如下：
+&#160; &#160; &#160; &#160;本Intelij Idea工程是针对TBDS组件认证而开发，包含的demo程序如下：
 1. HBaseDemo：简单的HBase二次开发程序，传入表名，如果不存在，则创建；然后列出所有的表
 2. HDFSDemo：列出根目录/下的所有文件与文件夹
 3. HiveDemo：连接hiveserver，并列出所有的数据库
@@ -13,6 +13,7 @@
 9. ReadHiveTableDemo：使用spark读取hive表的数据
 10. WriteHiveTableDemo：使用spark输出数据到hive表
 11. FlinkKafkaDemo：flink消费kafka数据
+12. Spark输入到Hbase：spark往Hbase写数据的3种方式
 ***
 ### 编译出的jar包如何运行 
 &#160; &#160; &#160; &#160;使用maven编译出 dev-demo-1.0-SNAPSHOT.jar，使用java命令直接执行，各功能模块执行方式如下。
