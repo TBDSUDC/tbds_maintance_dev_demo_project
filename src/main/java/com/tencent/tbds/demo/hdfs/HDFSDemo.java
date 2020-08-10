@@ -15,7 +15,7 @@ import org.apache.hadoop.security.UserGroupInformation;
  * 认证方式二：通过代码设置认证参数
  *
  * usage:
- * hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.hdfs.HDFSDemo --auth-user <username> --auth-id <id> --auth-key <key>
+ * hadoop jar dev-demo-<version>.jar com.tencent.tbds.demo.hdfs.HDFSDemo --auth-user <username> --auth-id <id> --auth-key <key>
  */
 public class HDFSDemo {
     public static void main(String[] args) throws Exception {

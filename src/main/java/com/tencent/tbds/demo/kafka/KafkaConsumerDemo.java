@@ -12,15 +12,15 @@ import java.util.Properties;
 /**
  * 认证方式一：TBDS原生认证
  * usage:
- * java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
+ * java -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
  *
  * 认证方式二：SASL/PLAIN认证
  * usage:
- * java -Djava.security.auth.login.config=/etc/path/kafka_client_jaas.conf -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --kafka-brokers <kafka broker list> --topic <topic name>
+ * java -Djava.security.auth.login.config=/etc/path/kafka_client_jaas.conf -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --kafka-brokers <kafka broker list> --topic <topic name>
  *
  * SASL/PLAIN认证设置：
  * 1. 修改kafka的模板文件：
- * /var/lib/tbds-server/resources/common-services/KAFKA/0.10.0.1/package/templates/kafka_jaas.conf.j2
+ * /var/lib/tbds-server/resources/common-services/KAFKA/1.0.0/package/templates/kafka_jaas.conf.j2
  * 2. 添加认证用户
  * 3. 重启tbds-server服务
  * 4. 重启kafka

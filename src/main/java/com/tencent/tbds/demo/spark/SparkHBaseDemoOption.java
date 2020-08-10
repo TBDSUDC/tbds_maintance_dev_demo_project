@@ -14,6 +14,7 @@ public class SparkHBaseDemoOption {
     private final OptionSpec<String> authKey;
     private final OptionSpec<String> authUser;
     private final OptionSpec<String> zkHost;
+    private final OptionSpec<String> tableName;
 
     public SparkHBaseDemoOption(String[] args) {
         this.optionParser = new OptionParser();
@@ -36,6 +37,11 @@ public class SparkHBaseDemoOption {
                 .withRequiredArg()
                 .required()
                 .describedAs("comma separated list of zookeeper servers, in the form host1,host2...");
+
+        tableName = optionParser.accepts("table-name")
+                .withRequiredArg()
+                .required()
+                .describedAs("hbase table which read data from");
 
         optionParser.accepts("help").forHelp();
         this.optionSet = optionParser.parse(args);
@@ -71,5 +77,9 @@ public class SparkHBaseDemoOption {
 
     public String getZkHost() {
         return optionSet.valueOf(zkHost);
+    }
+
+    public String getTableName() {
+        return optionSet.valueOf(tableName);
     }
 }

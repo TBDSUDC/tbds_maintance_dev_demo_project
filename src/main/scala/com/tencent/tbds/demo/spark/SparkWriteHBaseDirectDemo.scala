@@ -15,8 +15,8 @@ import org.apache.spark.{SparkConf, SparkContext}
  * 2. 提交spark任务：
  * spark-submit --class com.tencent.tbds.demo.spark.SparkWriteHBaseDirectDemo
  * --jars $(echo /usr/hdp/2.2.0.0-2041/hbase/lib/\*.jar | tr ' ' ',')
- * dev-demo-1.0-SNAPSHOT.jar
- * --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...>
+ * dev-demo-<version>.jar
+ * --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...> --table-name <tableName>
  *
  */
 object SparkWriteHBaseDirectDemo {
@@ -35,12 +35,13 @@ object SparkWriteHBaseDirectDemo {
     val zkHost = option.getZkHost
     val authId = option.getAuthId
     val authKey = option.getAuthKey
+    val tableName = option.getTableName
 
     sc.makeRDD(
       Seq(("10003", "page#10003", 20), ("10004", "page#10004", 60))
     ).foreachPartition(iterator => {
       val conf = HBaseConfiguration.create()
-      conf.set(TableOutputFormat.OUTPUT_TABLE, "my_test")
+      conf.set(TableOutputFormat.OUTPUT_TABLE, tableName)
       conf.set("hbase.zookeeper.quorum", zkHost)
       conf.set("zookeeper.znode.parent", "/hbase-unsecure")
 
@@ -49,7 +50,7 @@ object SparkWriteHBaseDirectDemo {
       conf.set("hbase.security.authentication.tbds.securekey", authKey)
 
       val connection = ConnectionFactory.createConnection(conf)
-      val table = connection.getTable(TableName.valueOf("my_test"))
+      val table = connection.getTable(TableName.valueOf(tableName))
       iterator.foreach(t => {
         val put = new Put(Bytes.toBytes(t._1))
         put.addColumn(Bytes.toBytes("cf"), Bytes.toBytes("a"), Bytes.toBytes(t._2))
@@ -72,7 +73,7 @@ object SparkWriteHBaseDirectDemo {
 
     val connection = ConnectionFactory.createConnection(conf)
     val admin = connection.getAdmin
-    val tableName = TableName.valueOf("my_test")
+    val tableName = TableName.valueOf(option.getTableName)
 
     if (!admin.tableExists(tableName)) {
       val table = new HTableDescriptor(tableName)

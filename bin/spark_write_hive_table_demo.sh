@@ -40,6 +40,5 @@ export hadoop_security_authentication_tbds_securekey="$authKey"
   --master yarn \
   --queue root.default \
   --deploy-mode client \
-  --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar \
   "${bin}"/../dev-demo-1.0-SNAPSHOT.jar \
   "${ARGS[@]}"

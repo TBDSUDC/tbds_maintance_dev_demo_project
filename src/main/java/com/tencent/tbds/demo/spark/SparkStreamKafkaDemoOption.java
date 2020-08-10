@@ -33,7 +33,8 @@ public class SparkStreamKafkaDemoOption {
 
         groupId = optionParser.accepts("group-id")
                 .withRequiredArg()
-                .required()
+                .ofType(String.class)
+                .defaultsTo("test_group_001")
                 .describedAs("kafka group id to consume data");
 
         authId = optionParser.accepts("auth-id")

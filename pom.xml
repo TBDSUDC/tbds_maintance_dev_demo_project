@@ -6,16 +6,16 @@
 
     <groupId>com.tencent.tbds</groupId>
     <artifactId>dev-demo</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>5.1.3.0</version>
 
     <properties>
-        <spark.version>2.1.0</spark.version>
-        <hive.version>2.2.0-TBDS-4.0.4.1</hive.version>
-        <hadoop.version>2.7.2-TBDS-4.0.3.3</hadoop.version>
-        <hbase.version>1.2.1-TBDS-4.0.3.3</hbase.version>
-        <kafka.version>1.0.0-TBDS-5.0</kafka.version>
-        <tbds.flink.version>1.7-tdflink-0.1.1</tbds.flink.version>
-        <hippo.version>4.1.2.0</hippo.version>
+        <spark.version>2.3.2-TBDS-5.1.3.0</spark.version>
+        <hive.version>2.2.0-TBDS-5.1.3.0</hive.version>
+        <hadoop.version>2.7.2-TBDS-5.1.3.0</hadoop.version>
+        <hbase.version>1.2.1-TBDS-5.1.3.0</hbase.version>
+        <kafka.version>1.0.0-TBDS-5.1.3.0</kafka.version>
+        <tbds.flink.version>1.7-tdflink-0.2-TBDS</tbds.flink.version>
+        <hippo.version>5.1.3.0</hippo.version>
         <scala.version>2.11.12</scala.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -183,8 +183,7 @@
         <dependency>
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
-            <version>4.9</version>
-            <scope>provided</scope>
+            <version>5.0.4</version>
         </dependency>
     </dependencies>
 
@@ -219,6 +218,7 @@
                         <configuration>
                             <artifactSet>
                                 <includes>
+                                    <include>net.sf.jopt-simple:jopt-simple</include>
                                     <include>org.apache.kafka:kafka-clients</include>
                                     <include>org.apache.flink:flink-connector-filesystem_2.11</include>
                                     <include>org.apache.spark:spark-streaming-kafka-0-10_2.11</include>

@@ -15,10 +15,8 @@ import org.slf4j.{Logger, LoggerFactory}
  * spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo
  * --master yarn
  * --deploy-mode client
- * --conf spark.executor.userClassPathFirst=true
- * --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar
- * dev-demo-1.0-SNAPSHOT.jar
- * --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key>
+ * dev-demo-<version>.jar
+ * --kafka-brokers <kafka brokers> --auth-id <auth id> --auth-key <auth key>
  * --topic <topic name>
  *
  */

@@ -9,7 +9,7 @@ import java.util.concurrent.Future;
 
 /**
  * usage:
- * java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
+ * java -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <kafka broker list> --topic <topic name>
  */
 public class KafkaProducerDemo {
     public static void main(String[] args) throws Exception {

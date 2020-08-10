@@ -19,8 +19,8 @@ import org.apache.spark.{SparkConf, SparkContext}
  * 2. 提交spark任务：
  * spark-submit --class com.tencent.tbds.demo.spark.SparkWriteHBaseBatchDemo
  * --jars $(echo /usr/hdp/2.2.0.0-2041/hbase/lib/\*.jar | tr ' ' ',')
- * dev-demo-1.0-SNAPSHOT.jar
- * --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...>
+ * dev-demo-<version>.jar
+ * --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...> --table-name <tableName>
  *
  */
 object SparkWriteHBaseBatchDemo {
@@ -35,7 +35,7 @@ object SparkWriteHBaseBatchDemo {
     val sc = new SparkContext(sparkConf)
 
     val conf = HBaseConfiguration.create()
-    conf.set(TableOutputFormat.OUTPUT_TABLE, "my_test")
+    conf.set(TableOutputFormat.OUTPUT_TABLE, option.getTableName)
     conf.set("hbase.zookeeper.quorum", option.getZkHost)
     conf.set("zookeeper.znode.parent", "/hbase-unsecure")
 
@@ -62,7 +62,7 @@ object SparkWriteHBaseBatchDemo {
     val connection = ConnectionFactory.createConnection(config)
     val admin = connection.getAdmin
 
-    val tableName = TableName.valueOf("my_test")
+    val tableName = TableName.valueOf(config.get(TableOutputFormat.OUTPUT_TABLE))
 
     if (!admin.tableExists(tableName)) {
       val table = new HTableDescriptor(tableName)

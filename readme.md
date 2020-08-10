@@ -16,13 +16,13 @@
 12. Spark输入到Hbase：spark往Hbase写数据的3种方式
 ***
 ### 编译出的jar包如何运行 
-&#160; &#160; &#160; &#160;使用maven编译出 dev-demo-1.0-SNAPSHOT.jar，使用java命令直接执行，各功能模块执行方式如下。
+&#160; &#160; &#160; &#160;使用maven编译出 dev-demo-<version>.jar，使用java命令直接执行，各功能模块执行方式如下。
 
 ***
 #### 运行 HBaseDemo 
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <host1,host2> --table-name <table name>
+java -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/hbase/lib/* com.tencent.tbds.demo.hbase.HBaseDemo --auth-id <id> --auth-key <key> --zk-host <host1,host2> --table-name <table name>
 ```
 参数解释:  
 auth-id: 认证ID  
@@ -32,9 +32,9 @@ table-name: hbase表名
 
 ***
 #### 运行 HDFSDemo 
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 ```
-hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.hdfs.HDFSDemo --auth-user <username> --auth-id <id> --auth-key <key>
+hadoop jar dev-demo-<version>.jar com.tencent.tbds.demo.hdfs.HDFSDemo --auth-user <username> --auth-id <id> --auth-key <key>
 ```
 参数解释:  
 auth-user: 认证用户  
@@ -47,9 +47,9 @@ auth-key: 认证key
 代码中默认采用高可用连接方式，因此在运行程序时需要传入zk地址、用户名、密码
 
 **运行**<br>
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 ```
-java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/hive/lib/*:/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list <host1:port1,host2:port2> --user <user name> --password <password>
+java -cp dev-demo-<version>.jar:$(echo /usr/hdp/2.2.0.0-2041/hive/lib/*.jar | tr ' ' ':'):/usr/hdp/2.2.0.0-2041/hadoop/hadoop-common.jar com.tencent.tbds.demo.hive.HiveDemo --zk-list <host1:port1,host2:port2> --user <user name> --password <password>
 ```
 
 参数解释:  
@@ -59,10 +59,10 @@ password: 连接hive的密码
 
 ***
 #### 运行 KafkaProducerDemo 
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 
 ```
- java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
+ java -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaProducerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
 ```
 参数解释:   
 auth-id: 认证ID  
@@ -72,9 +72,9 @@ topic: 指定数据发送到哪个topic
 
 ***
 #### 运行 KafkaConsumerDemo
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 ```
- java -cp dev-demo-1.0-SNAPSHOT.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
+ java -cp dev-demo-<version>.jar:/usr/hdp/2.2.0.0-2041/kafka/libs/* com.tencent.tbds.demo.kafka.KafkaConsumerDemo --auth-id <id> --auth-key <key> --kafka-brokers <broker1:6667,broker2:6667> --topic <topic name>
 ```
 参数解释:   
 auth-id: 认证ID  
@@ -85,9 +85,9 @@ offset-reset: 可选参数，默认值是latest
 
 ***
 #### 运行 MapReduceDemo 
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 ```
-hadoop jar dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.mapreduce.MapReduceDemo --auth-user <username> --auth-id <id> --auth-key <key> --input <input path> --output <output path>
+hadoop jar dev-demo-<version>.jar com.tencent.tbds.demo.mapreduce.MapReduceDemo --auth-user <username> --auth-id <id> --auth-key <key> --input <input path> --output <output path>
 ```
 参数解释:  
 auth-user: 认证用户  
@@ -109,10 +109,10 @@ output: 数据输出目录
     即从路径/opt/cluster_conf/hadoop/ 中读取配置信息，所以请从集群中获取该配置文件并放置到对应的路径中
     
 **运行**<br>
-*假定在dev-demo-1.0-SNAPSHOT.jar所在目录执行*<br>
+*假定在dev-demo-<version>.jar所在目录执行*<br>
 1. 运行方式1：采用spark-submit方式
     ```
-     /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.spark.SparkDemo dev-demo-1.0-SNAPSHOT.jar /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
+     /usr/hdp/2.2.0.0-2041/spark/bin/spark-submit --master yarn-cluster --executor-memory 3g --driver-memory 1g --num-executors 2 --executor-cores 2 --class com.tencent.tbds.demo.spark.SparkDemo dev-demo-<version>.jar /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
     其中 /tmp/wordcount/input/readme.txt 为输入数据，/tmp/wordcount/output为输出目录
 2. 运行方式2：采用java的方式，该方式需要使用spark Launcher进程来把主任务调度起来：
@@ -126,14 +126,14 @@ output: 数据输出目录
                     .setConf("spark.executor.memory", "3g")
                     .setConf("spark.executor.cores", "2")
                     .setConf("spark.executor.instances", "2")
-                    .setAppResource("dev-demo-1.0-SNAPSHOT.jar")
+                    .setAppResource("dev-demo-<version>.jar")
                     .setMainClass("com.tencent.tbds.demo.spark.SparkDemo")
                     .addAppArgs(args[0], args[1])
                     .setDeployMode("cluster")
     ```
    **执行**
     ```
-    java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-1.0-SNAPSHOT.jar com.tencent.tbds.demo.spark.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
+    java -Djava.ext.dirs=/usr/hdp/2.2.0.0-2041/spark/jars:/usr/hdp/2.2.0.0-2041/hadoop -cp dev-demo-<version>.jar com.tencent.tbds.demo.spark.SparkLauncherDemo /usr/hdp/2.2.0.0-2041/spark cluster /tmp/pyspark_demo/pyspark_demo.csv /tmp/spark_wordcount/
     ```
 ***
 #### 运行 SparkReadHiveTableDemo
@@ -203,7 +203,7 @@ hdfs-path: 数据输出到HDFS的路径
 #### 运行 SparkStreamKafkaDemo
 **这是一个使用Spark Streaming实时消费kafka数据的示例程序**
 ```
- spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo --master yarn --deploy-mode client --conf spark.executor.userClassPathFirst=true --jars /usr/hdp/2.2.0.0-2041/hive/lib/jopt-simple-4.9.jar dev-demo-1.0-SNAPSHOT.jar --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key> --topic <topic name>
+ spark-submit --class com.tencent.tbds.demo.spark.SparkStreamKafkaDemo --master yarn --deploy-mode client dev-demo-<version>.jar --kafka-brokers <kafka brokers> --group-id <group id> --auth-id <auth id> --auth-key <auth key> --topic <topic name>
 ```
 参数解释:  
 kafka-brokers: kafka broker地址列表  
@@ -221,7 +221,7 @@ topic: kafka topic名称
 
 这3种方式的例子请分别参考：SparkWriteHBaseDirectDemo、SparkWriteHBaseBatchDemo、SparkWriteHBaseBulkLoadDemo，其运行的命令如下：
 ```
- spark-submit --class com.tencent.tbds.demo.spark.SparkWriteHBaseDirectDemo --jars $(echo /usr/hdp/2.2.0.0-2041/hbase/lib/*.jar | tr ' ' ',') dev-demo-1.0-SNAPSHOT.jar --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...>
+ spark-submit --class com.tencent.tbds.demo.spark.SparkWriteHBaseDirectDemo --jars $(echo /usr/hdp/2.2.0.0-2041/hbase/lib/*.jar | tr ' ' ',') dev-demo-<version>.jar --auth-id <auth id> --auth-key <auth key> --zk-host <host1,host2...> --table-name <tableName>
 ```
 
 
