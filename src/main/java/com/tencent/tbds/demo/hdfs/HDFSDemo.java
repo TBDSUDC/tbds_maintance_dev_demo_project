@@ -29,6 +29,7 @@ public class HDFSDemo {
         conf.set("fs.defaultFS", option.getDefaultFS());
 
         // 设置认证参数
+        conf.set("hadoop.security.authentication", "tbds");
         conf.set("hadoop_security_authentication_tbds_username", option.getAuthUser());
         conf.set("hadoop_security_authentication_tbds_secureid", option.getAuthId());
         conf.set("hadoop_security_authentication_tbds_securekey", option.getAuthKey());
