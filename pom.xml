@@ -27,6 +27,10 @@
             <id>tencent-tbds</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/tbds/</url>
         </repository>
+        <repository>
+            <id>tencent-public</id>
+            <url>https://tbdsrepo.cloud.tencent.com/repository/maven-public/</url>
+        </repository>
     </repositories>
 
     <dependencies>
