@@ -26,10 +26,23 @@
         <repository>
             <id>tencent-tbds</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/tbds/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
         <repository>
             <id>tencent-public</id>
             <url>https://tbdsrepo.cloud.tencent.com/repository/maven-public/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>redhat-ga</id>
+            <url>https://maven.repository.redhat.com/ga/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
         </repository>
     </repositories>
 
@@ -150,6 +163,11 @@
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka_2.11</artifactId>
+            <version>${kafka.version}</version>
+        </dependency>
 
         <!-- dependencies for flink -->
         <dependency>
@@ -184,6 +202,12 @@
             <groupId>net.sf.jopt-simple</groupId>
             <artifactId>jopt-simple</artifactId>
             <version>5.0.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-core</artifactId>
+            <version>4.12.0-HBase-1.2-TBDS-5.1.3.0</version>
         </dependency>
     </dependencies>
 
