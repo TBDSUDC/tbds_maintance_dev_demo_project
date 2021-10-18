@@ -209,6 +209,13 @@
             <artifactId>phoenix-core</artifactId>
             <version>4.12.0-HBase-1.2-TBDS-5.1.3.0</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.apache.phoenix</groupId>
+            <artifactId>phoenix-spark</artifactId>
+            <version>4.12.0-HBase-1.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

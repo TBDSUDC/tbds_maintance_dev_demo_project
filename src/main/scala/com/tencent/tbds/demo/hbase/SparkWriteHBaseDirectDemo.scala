@@ -1,5 +1,6 @@
-package com.tencent.tbds.demo.spark
+package com.tencent.tbds.demo.hbase
 
+import com.tencent.tbds.demo.spark.SparkHBaseDemoOption
 import org.apache.hadoop.hbase.client.{ConnectionFactory, Put}
 import org.apache.hadoop.hbase.mapreduce.TableOutputFormat
 import org.apache.hadoop.hbase.util.Bytes
