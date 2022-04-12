@@ -11,7 +11,7 @@
     <properties>
         <spark.version>2.3.2-TBDS-5.2.0.1</spark.version>
         <hive.version>2.2.0-TBDS-5.2.0.1</hive.version>
-        <hadoop.version>2.7.2-TBDS-5.2.0.1</hadoop.version>
+        <hadoop.version>3.2.3</hadoop.version>
         <hbase.version>1.2.1-TBDS-5.2.0.1</hbase.version>
         <kafka.version>1.0.0-TBDS-5.2.0.1</kafka.version>
         <tbds.flink.version>1.7-tdflink-0.2-TBDS</tbds.flink.version>
